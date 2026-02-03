@@ -1,0 +1,14 @@
+# Example values
+aws_region               = "us-east-1"
+project_name             = "lakehouse-blueprint"
+
+# Tables
+# dynamodb_alerts_table_name = "Alerts"
+# dynamodb_users_table_name  = "Users"
+
+# Lambda code packaged separately and uploaded to S3
+# lambda_code_s3_bucket = "my-artifacts-bucket"
+# lambda_code_s3_key    = "lambdas/alerts_processor.zip"
+
+# Optional trigger
+# enable_bronze_s3_trigger = false

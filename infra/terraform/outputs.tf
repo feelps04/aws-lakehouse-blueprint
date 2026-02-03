@@ -24,3 +24,23 @@ output "ingestion_uploader_secret_access_key" {
   description = "Secret key for ingestion uploader (store securely)"
   sensitive   = true
 }
+
+output "dynamodb_alerts_table_name" {
+  value       = aws_dynamodb_table.alerts.name
+  description = "DynamoDB table name for alerts"
+}
+
+output "dynamodb_users_table_name" {
+  value       = aws_dynamodb_table.users.name
+  description = "DynamoDB table name for users"
+}
+
+output "lambda_exec_role_arn" {
+  value       = aws_iam_role.lambda_exec_role.arn
+  description = "IAM role ARN assumed by Lambda"
+}
+
+output "lambda_function_name" {
+  value       = try(aws_lambda_function.alerts_processor[0].function_name, null)
+  description = "Lambda function name (null when enable_lambda=false)"
+}
