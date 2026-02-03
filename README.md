@@ -1,4 +1,3 @@
-AWS Data Lakehouse: O que aprendi construindo um SaaS
 Este repositório não é apenas um código de estudo. Ele é a "espinha dorsal" técnica do que aplico no meu SaaS (Sem Viagem), mas aqui eu o trouxe de forma genérica para que outros engenheiros possam usar como base.
 
 Por que criei isso?
@@ -21,6 +20,9 @@ flowchart LR
     B -->|Glue Job| C[S3 Silver (Parquet)]
     C -->|dbt| D[S3 Gold]
     D --> E[Athena / BI]
+Automação (CI/CD)
+O projeto inclui um GitHub Action inteligente que valida toda a infraestrutura a cada Pull Request. Ele garante que o código Terraform está formatado e sintaticamente correto antes de qualquer alteração chegar na main.
+
 Como rodar
 Infra: cd infra/terraform && terraform apply
 
