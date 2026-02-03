@@ -1,0 +1,11 @@
+name: 'lakehouse_blueprint'
+version: '1.0.0'
+config-version: 2
+
+profile: 'lakehouse_blueprint'
+
+model-paths: ['models']
+
+models:
+  lakehouse_blueprint:
+    +materialized: view

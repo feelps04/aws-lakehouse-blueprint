@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: silver
+    tables:
+      - name: events
+
+models:
+  - name: silver__events
+  - name: gold__events_summary

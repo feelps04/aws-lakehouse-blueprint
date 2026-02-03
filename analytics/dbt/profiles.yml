@@ -1,0 +1,9 @@
+lakehouse_blueprint:
+  target: dev
+  outputs:
+    dev:
+      type: athena
+      s3_staging_dir: s3://REPLACE_ME-athena-staging/
+      region_name: us-east-1
+      database: lakehouse_blueprint
+      work_group: primary
