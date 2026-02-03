@@ -111,3 +111,9 @@ variable "enable_bronze_s3_trigger" {
   description = "If true, configure S3 ObjectCreated trigger from Bronze bucket to Lambda"
   default     = false
 }
+
+variable "analytics_account_id" {
+  type        = string
+  description = "Optional AWS account ID allowed to assume a cross-account role to read Gold layer. Leave empty to disable."
+  default     = ""
+}

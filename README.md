@@ -13,6 +13,35 @@ Segurança de verdade: Nada de admin para tudo. O uploader só faz upload, o pro
 Nota de bastidor: Se você quer ver como isso escala na vida real, dê uma olhada no diretório /infra. Ali o Terraform faz o trabalho pesado para que a gente possa focar no que importa: o dado.
 
 🛠️ Visão Técnica
+
+🛡️ Governança e Segurança Cross-Account
+Este projeto foi desenhado seguindo o Well-Architected Framework da AWS. Em vez de uma conta única e caótica, a arquitetura está preparada para ambientes segregados:
+
+Least Privilege (IAM): Nenhuma função ou usuário tem permissão FullAccess.
+
+O Ingestor possui apenas s3:PutObject no bucket Bronze.
+
+O Glue Job possui permissões de leitura no Bronze e escrita no Silver, sem acesso à camada Gold.
+
+As políticas são anexadas via Managed Policies via Terraform para facilitar auditoria.
+
+Pronto para Cross-Account: A estrutura de IAM utiliza roles que podem ser assumidas (AssumeRole) por identidades de outras contas (ex: conta de Analytics acessando a conta de Produção), garantindo que as chaves de acesso nunca saiam de seus respectivos perímetros.
+
+O Diagrama de Arquitetura (O "Pulo do Gato")
+Como você não vai postar o código real de cross-account (para manter o blueprint simples de rodar), o Diagrama é onde você prova que sabe fazer.
+
+Dica de Arquiteto: Desenhe no Excalidraw (é grátis e tem um visual limpo) um fluxo assim:
+
+Box 1 (Conta App): Mostre o seu SaaS (Sem Viagem) gerando os dados.
+
+Seta: Mostre o dado sendo enviado para uma conta de Data Lake centralizada via Role Cross-Account.
+
+Box 2 (Conta Data Lake): Mostre as camadas Bronze, Silver e Gold.
+
+Box 3 (Conta Analytics/BI): Mostre o Athena ou QuickSight buscando os dados da Gold via permissões delegadas.
+
+Por que fazer isso? Isso mostra que você sabe resolver o problema de "Como eu dou acesso ao time de BI sem deixar eles verem a conta de Produção?".
+
 Arquitetura
 Snippet de código
 flowchart LR
